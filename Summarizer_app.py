@@ -5,7 +5,15 @@ from dotenv import load_dotenv
 
 # Load API key from .env file
 load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# Get API key safely
+api_key = os.getenv("OPENAI_API_KEY")
+
+if not api_key:
+    st.error("⚠️ OpenAI API key not found. Please add it in Streamlit Secrets.")
+    st.stop()  # Stop the app gracefully
+
+# Initialize client
+client = OpenAI(api_key=api_key)
 # Streamlit UI
 st.title("📝 AI Text Summarizer")
 st.write("Paste your text below and let AI summarize it for you.")
@@ -50,5 +58,6 @@ if st.button("Summarize"):
         summary = response.choices[0].message.content
         st.subheader("📌 Summary")
         st.write(summary)
+
 
 
