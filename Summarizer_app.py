@@ -49,7 +49,7 @@ if st.button("Summarize"):
 
         # Call OpenAI
         response = client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-3.5-turbo",
             messages=[
                 {"role": "user", "content": f"{length_instruction[option]} Here is the text: {text}"}
             ]
@@ -59,6 +59,7 @@ if st.button("Summarize"):
         summary = response.choices[0].message.content
         st.subheader("📌 Summary")
         st.write(summary)
+
 
 
 
