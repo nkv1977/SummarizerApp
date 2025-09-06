@@ -15,7 +15,7 @@ if not api_key:
 # Initialize client
 client = OpenAI(api_key=api_key)
 # Streamlit UI
-st.title("📝 AI Text Summarizer")
+st.title("📝 AI Text Summarizer..Version 6th Sep 19:33")
 st.write("Paste your text below and let AI summarize it for you.")
 
 # User input
@@ -58,6 +58,7 @@ if st.button("Summarize"):
         summary = response.choices[0].message.content
         st.subheader("📌 Summary")
         st.write(summary)
+
 
 
 
