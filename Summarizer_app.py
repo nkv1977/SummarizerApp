@@ -49,6 +49,11 @@ if st.button("Summarize"):
         }
 
         # Call OpenAI
+        try:
+            models = client.models.list()
+            st.write("✅ Models loaded:", [m.id for m in models.data[:5]])
+        except Exception as e:
+            st.error(f"Model listing failed: {e}")
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
@@ -60,6 +65,7 @@ if st.button("Summarize"):
         summary = response.choices[0].message.content
         st.subheader("📌 Summary")
         st.write(summary)
+
 
 
 
